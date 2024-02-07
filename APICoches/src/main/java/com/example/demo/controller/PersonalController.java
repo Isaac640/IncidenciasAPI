@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import com.example.demo.repository.PersonalRepository;
 
 @RestController
 @RequestMapping("/api/personal")
-public class PersonalController {
+public class PersonalController<E>  {
 
 	@Autowired
     private PersonalRepository personalRepository;
@@ -28,7 +29,7 @@ public class PersonalController {
     }
 
     @GetMapping("/{id}")
-    public Personal getPersonalById(@PathVariable Long id) {
+    public Personal getPersonalById(@PathVariable int id) {
         return personalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Personal no encontrado con id: " + id));
     }
@@ -39,7 +40,7 @@ public class PersonalController {
     }
 
     @PutMapping("/{id}")
-    public Personal updatePersonal(@PathVariable Long id, @RequestBody Personal personalDetails) {
+    public Personal updatePersonal(@PathVariable int id, @RequestBody Personal personalDetails) {
         Personal personal = personalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Personal no encontrado con id: " + id));
 
@@ -50,6 +51,7 @@ public class PersonalController {
         personal.setApellido2(personalDetails.getApellido2());
         personal.setDireccion(personalDetails.getDireccion());
         personal.setLocalidad(personalDetails.getLocalidad());
+        
         personal.setCp(personalDetails.getCp());
         personal.setTlf(personalDetails.getTlf());
         personal.setActivo(personalDetails.getActivo());
@@ -58,12 +60,17 @@ public class PersonalController {
         return personalRepository.save(personal);
     }
 
+    
     @DeleteMapping("/{id}")
-    public void deletePersonal(@PathVariable Long id) {
+    public void deletePersonal(@PathVariable int id) {
         Personal personal = personalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Personal no encontrado con id: " + id));
 
         personalRepository.delete(personal);
     }
+    
 	
+    
+    
+    
 }

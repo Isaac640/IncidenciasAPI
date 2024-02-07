@@ -1,7 +1,8 @@
 package com.example.demo.controller;
 
-import java.util.List;
 
+import java.util.List;
+import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Incidencias;
@@ -45,8 +47,9 @@ public class IncidenciaController {
 
         // Actualizar los campos según los detalles proporcionados
         incidencia.setTipo(incidenciaDetails.getTipo());
-        incidencia.setSubtipoId(incidenciaDetails.getSubtipoId());
+        incidencia.setSubtipo(incidenciaDetails.getSubtipo());
         incidencia.setDescripcion(incidenciaDetails.getDescripcion());
+        incidencia.setCreador(incidenciaDetails.getCreador());
         // Actualizar otros campos según sea necesario
 
         return incidenciaRepository.save(incidencia);
@@ -59,5 +62,14 @@ public class IncidenciaController {
 
         incidenciaRepository.delete(incidencia);
     }
+    @GetMapping("/tipo={tipo}")
+	public List<Incidencias> findByTipo(@PathVariable String Tipo){
+		return incidenciaRepository.findByTipo(Tipo);
+	}
+    
+    @GetMapping("/creadorid={creadorid}")
+	public List<Incidencias> findByCreadorId(@PathVariable Long creadorId ){
+		return incidenciaRepository.findByCreadorId(creadorId);	
+	}
 	
 }

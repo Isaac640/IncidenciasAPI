@@ -1,16 +1,27 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
+import java.util.List;
+
+import org.hibernate.annotations.NamedQuery;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
-public class Equipos {
+@NamedQuery(name="Equipos.findAll", query="SELECT e FROM Equipos e")
+public class Equipos implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
     private String tipoEquipo;
     private String fechaAdquisicion;
     private String etiqueta;
@@ -21,6 +32,10 @@ public class Equipos {
     private Long aulaNum;
     private Long puesto;
     
+    @OneToMany
+    @JoinColumn(name="equipo_id")
+    private List<Incidencias> incidencias;
+
 	public Equipos() {
 		super();
 	}

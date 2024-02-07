@@ -1,20 +1,30 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.NamedQuery;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
+
 @Entity
-public class Comentarios {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+@NamedQuery(name="Comentarios.findAll", query="SELECT c FROM Comentarios c")
+public class Comentarios implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
+
 	
     private String texto;
     
@@ -22,8 +32,10 @@ public class Comentarios {
     private LocalDateTime fechahora;
     
     private Long incidenciaNum;
-    
-    private Long personalId;
+    @ManyToOne
+    @JoinColumn(name="personal_id")
+    private Personal personal;
+
     
     private String adjuntoUrl;
     
@@ -31,21 +43,24 @@ public class Comentarios {
 		super();
 	}
 
-	public Comentarios(Long id, String texto, LocalDateTime fechahora, Long incidenciaNum, Long personalId, String adjuntoUrl) {
+
+	public Comentarios(int id, String texto, LocalDateTime fechahora, Long incidenciaNum, Personal personal,
+			String adjuntoUrl) {
 		super();
 		this.id = id;
 		this.texto = texto;
 		this.fechahora = fechahora;
 		this.incidenciaNum = incidenciaNum;
-		this.personalId = personalId;
+		this.personal = personal;
 		this.adjuntoUrl = adjuntoUrl;
 	}
 
-	public Long getId() {
+
+	public int getId() {
 		return id;
 	}
 	
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
@@ -73,13 +88,6 @@ public class Comentarios {
 		this.incidenciaNum = incidenciaNum;
 	}
 	
-	public Long getPersonalId() {
-		return personalId;
-	}
-	
-	public void setPersonalId(Long personalId) {
-		this.personalId = personalId;
-	}
 	
 	public String getAdjuntoUrl() {
 		return adjuntoUrl;
@@ -87,6 +95,21 @@ public class Comentarios {
 	
 	public void setAdjuntoUrl(String adjuntoUrl) {
 		this.adjuntoUrl = adjuntoUrl;
+	}
+
+
+	public Personal getPersonal() {
+		return personal;
+	}
+
+
+	public void setPersonal(Personal personal) {
+		this.personal = personal;
+	}
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
     
     

@@ -1,25 +1,37 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 
 @Entity
-public class IncidenciasSubtipos {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+@NamedQuery(name="IncidenciasSubtipos.findAll", query="SELECT i FROM IncidenciasSubtipos i")
+public class IncidenciasSubtipos implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
     private String tipo;
     private String subtipoNombre;
     private String subSubtipo;
-    
+
+
+    @OneToMany
+    @JoinColumn(name="subtipo_id")
+    private List<Incidencias> incidencias;
 	public IncidenciasSubtipos() {
 		super();
 	}
 
-	public IncidenciasSubtipos(Long id, String tipo, String subtipoNombre, String subSubtipo) {
+	public IncidenciasSubtipos(int id, String tipo, String subtipoNombre, String subSubtipo) {
 		super();
 		this.id = id;
 		this.tipo = tipo;
@@ -27,11 +39,11 @@ public class IncidenciasSubtipos {
 		this.subSubtipo = subSubtipo;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

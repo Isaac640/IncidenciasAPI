@@ -1,16 +1,27 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
-public class Personal {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+@NamedQuery(name="Personal.findAll", query="SELECT p FROM Personal p")
+public class Personal implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
+
     private String dni;
     private String nombre;
     private String apellido1;
@@ -21,13 +32,30 @@ public class Personal {
     private String tlf;
     private int activo;
     private Long departamentoId;
-    
+    @OneToOne(mappedBy="personal")
+    private Perfiles perfil;
+
+    @OneToMany(mappedBy="creador")
+    private List<Incidencias> incidenciasCreadas;
+
+    @OneToMany(mappedBy="responsable")
+    private List<Incidencias> incidenciasResponsable;
+
+    @OneToMany(mappedBy="personal")
+    private List<Comentarios> comentarios;
+
+    @ManyToOne
+    @JoinColumn(name="jefedept_id")
+    private Departamentos departamento;
 	public Personal() {
 		super();
 	}
 
-	public Personal(Long id, String dni, String nombre, String apellido1, String apellido2, String direccion,
-			String localidad, String cp, String tlf, int activo, Long departamentoId) {
+
+	public Personal(int id, String dni, String nombre, String apellido1, String apellido2, String direccion,
+			String localidad, String cp, String tlf, int activo, Long departamentoId, Perfiles perfil,
+			List<Incidencias> incidenciasCreadas, List<Incidencias> incidenciasResponsable,
+			List<Comentarios> comentarios, Departamentos departamento) {
 		super();
 		this.id = id;
 		this.dni = dni;
@@ -40,13 +68,19 @@ public class Personal {
 		this.tlf = tlf;
 		this.activo = activo;
 		this.departamentoId = departamentoId;
+		this.perfil = perfil;
+		this.incidenciasCreadas = incidenciasCreadas;
+		this.incidenciasResponsable = incidenciasResponsable;
+		this.comentarios = comentarios;
+		this.departamento = departamento;
 	}
 
-	public Long getId() {
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
