@@ -1,40 +1,56 @@
 package com.example.demo.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
 public class Perfiles {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long personalId;
+    private Long personal_Id;
     private String dominio;
     private String educantabria;
     private String password;
-    private String perfil;
+    @Enumerated(EnumType.STRING)
+    private TipoPerfil perfil;
+    
+    @OneToOne
+    @JoinColumn(name = "personal_id")
+    private Personal personal;
     
 	public Perfiles() {
 		super();
 	}
 
-	public Perfiles(Long personalId, String dominio, String educantabria, String password, String perfil) {
+	
+
+	public Perfiles(Long personal_Id, String dominio, String educantabria, String password, TipoPerfil perfil,
+			Personal personal) {
 		super();
-		this.personalId = personalId;
+		this.personal_Id = personal_Id;
 		this.dominio = dominio;
 		this.educantabria = educantabria;
 		this.password = password;
 		this.perfil = perfil;
+		this.personal = personal;
 	}
 
+
+
 	public Long getPersonalId() {
-		return personalId;
+		return personal_Id;
 	}
 
 	public void setPersonalId(Long personalId) {
-		this.personalId = personalId;
+		this.personal_Id = personalId;
 	}
 
 	public String getDominio() {
@@ -61,12 +77,20 @@ public class Perfiles {
 		this.password = password;
 	}
 
-	public String getPerfil() {
+	public TipoPerfil getPerfil() {
 		return perfil;
 	}
 
-	public void setPerfil(String perfil) {
+	public void setPerfil(TipoPerfil perfil) {
 		this.perfil = perfil;
+	}
+
+	public Personal getPersonal() {
+		return personal;
+	}
+
+	public void setPersonal(Personal personal) {
+		this.personal = personal;
 	}
     
     

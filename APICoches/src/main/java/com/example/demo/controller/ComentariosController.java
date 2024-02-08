@@ -47,7 +47,7 @@ public class ComentariosController {
         comentario.setTexto(comentarioDetails.getTexto());
         comentario.setFechahora(comentarioDetails.getFechahora());
         comentario.setIncidenciaNum(comentarioDetails.getIncidenciaNum());
-        comentario.setPersonalId(comentarioDetails.getPersonalId());
+        comentario.setPersonal(comentarioDetails.getPersonal());
         comentario.setAdjuntoUrl(comentarioDetails.getAdjuntoUrl());
 
         return comentariosRepository.save(comentario);

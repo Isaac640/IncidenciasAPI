@@ -1,0 +1,12 @@
+package com.example.demo.model;
+
+public enum TipoEquipo {
+	ALTAVOCES,
+	IMPRESORA,
+	MONITOR,
+	PANTALLA_INTERACTIVA,
+	PORTATIL_DE_AULA,
+	PORTATIL_DE_CONSEJERIA,
+	PROYECTOR
+	
+}

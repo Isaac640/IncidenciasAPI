@@ -1,25 +1,37 @@
 package com.example.demo.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "incidencias_subtipos")
 public class IncidenciasSubtipos {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-    private String tipo;
+	@Enumerated(EnumType.STRING)
+    private TipoIncidencias tipo;
     private String subtipoNombre;
     private String subSubtipo;
+    
+    @OneToMany
+    @JoinColumn(name="subtipo_id")
+    private List<Incidencias> incidencias;
     
 	public IncidenciasSubtipos() {
 		super();
 	}
 
-	public IncidenciasSubtipos(Long id, String tipo, String subtipoNombre, String subSubtipo) {
+	public IncidenciasSubtipos(Long id, TipoIncidencias tipo, String subtipoNombre, String subSubtipo) {
 		super();
 		this.id = id;
 		this.tipo = tipo;
@@ -35,11 +47,11 @@ public class IncidenciasSubtipos {
 		this.id = id;
 	}
 
-	public String getTipo() {
+	public TipoIncidencias getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoIncidencias tipo) {
 		this.tipo = tipo;
 	}
 

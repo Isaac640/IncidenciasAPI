@@ -1,20 +1,34 @@
 package com.example.demo.model;
 
+
+import java.util.List;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "departamentos")
+@NamedQuery(name="Departamentos.findAll", query="SELECT d FROM Departamentos d")
 public class Departamentos {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Long id;
     private String cod;
     private String nombre;
     private int activo;
-    private Long jefedepId;
+    private Long jefedep_id;
+    
+    @OneToMany(mappedBy="departamento_id")
+    private List<Personal> personal;;
     
 	public Departamentos() {
 		super();
@@ -26,7 +40,7 @@ public class Departamentos {
 		this.cod = cod;
 		this.nombre = nombre;
 		this.activo = activo;
-		this.jefedepId = jefedepId;
+		this.jefedep_id = jefedepId;
 	}
 
 	public Long getId() {
@@ -62,11 +76,11 @@ public class Departamentos {
 	}
 
 	public Long getJefedepId() {
-		return jefedepId;
+		return jefedep_id;
 	}
 
 	public void setJefedepId(Long jefedepId) {
-		this.jefedepId = jefedepId;
+		this.jefedep_id = jefedepId;
 	}
     
     

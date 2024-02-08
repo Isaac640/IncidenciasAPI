@@ -53,7 +53,7 @@ public class PersonalController {
         personal.setCp(personalDetails.getCp());
         personal.setTlf(personalDetails.getTlf());
         personal.setActivo(personalDetails.getActivo());
-        personal.setDepartamentoId(personalDetails.getDepartamentoId());
+        personal.setDepartamento(personalDetails.getDepartamento());
 
         return personalRepository.save(personal);
     }

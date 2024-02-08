@@ -1,18 +1,29 @@
 package com.example.demo.model;
 
+import java.sql.Date;
+import java.util.List;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "equipos")
 public class Equipos {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-    private String tipoEquipo;
-    private String fechaAdquisicion;
+	@Enumerated(value =EnumType.STRING)
+    private TipoEquipo tipoEquipo;
+    private Date fechaAdquisicion;
     private String etiqueta;
     private String marca;
     private String modelo;
@@ -21,11 +32,15 @@ public class Equipos {
     private Long aulaNum;
     private Long puesto;
     
+    @OneToMany
+    @JoinColumn(name = "equipo_id")
+    private List<Incidencias> incidencias;
+    
 	public Equipos() {
 		super();
 	}
 
-	public Equipos(Long id, String tipoEquipo, String fechaAdquisicion, String etiqueta, String marca, String modelo,
+	public Equipos(Long id, TipoEquipo tipoEquipo, Date fechaAdquisicion, String etiqueta, String marca, String modelo,
 			String descripcion, int baja, Long aulaNum, Long puesto) {
 		super();
 		this.id = id;
@@ -48,19 +63,19 @@ public class Equipos {
 		this.id = id;
 	}
 
-	public String getTipoEquipo() {
+	public TipoEquipo getTipoEquipo() {
 		return tipoEquipo;
 	}
 
-	public void setTipoEquipo(String tipoEquipo) {
+	public void setTipoEquipo(TipoEquipo tipoEquipo) {
 		this.tipoEquipo = tipoEquipo;
 	}
 
-	public String getFechaAdquisicion() {
+	public Date getFechaAdquisicion() {
 		return fechaAdquisicion;
 	}
 
-	public void setFechaAdquisicion(String fechaAdquisicion) {
+	public void setFechaAdquisicion(Date fechaAdquisicion) {
 		this.fechaAdquisicion = fechaAdquisicion;
 	}
 

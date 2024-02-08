@@ -2,18 +2,22 @@ package com.example.demo.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
+@Table(name = "comentarios")
 public class Comentarios {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
     private String texto;
@@ -23,22 +27,32 @@ public class Comentarios {
     
     private Long incidenciaNum;
     
-    private Long personalId;
-    
     private String adjuntoUrl;
     
+    @ManyToOne
+    @JoinColumn(name="personal_id")
+    private Personal personal;
+    
+    
+    
+	public void setPersonal(Personal personal) {
+		this.personal = personal;
+	}
+
 	public Comentarios() {
 		super();
 	}
 
-	public Comentarios(Long id, String texto, LocalDateTime fechahora, Long incidenciaNum, Long personalId, String adjuntoUrl) {
+	
+	public Comentarios(Long id, String texto, LocalDateTime fechahora, Long incidenciaNum, String adjuntoUrl,
+			Personal personal) {
 		super();
 		this.id = id;
 		this.texto = texto;
 		this.fechahora = fechahora;
 		this.incidenciaNum = incidenciaNum;
-		this.personalId = personalId;
 		this.adjuntoUrl = adjuntoUrl;
+		this.personal = personal;
 	}
 
 	public Long getId() {
@@ -73,14 +87,12 @@ public class Comentarios {
 		this.incidenciaNum = incidenciaNum;
 	}
 	
-	public Long getPersonalId() {
-		return personalId;
-	}
 	
-	public void setPersonalId(Long personalId) {
-		this.personalId = personalId;
-	}
 	
+	public Personal getPersonal() {
+		return personal;
+	}
+
 	public String getAdjuntoUrl() {
 		return adjuntoUrl;
 	}

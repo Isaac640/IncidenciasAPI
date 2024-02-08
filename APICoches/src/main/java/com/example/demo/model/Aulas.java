@@ -1,13 +1,23 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
-public class Aulas {
-	
+@Table(name = "aulas")
+@NamedQuery(name="Aulas.findAll", query="SELECT a FROM Aulas a")
+public class Aulas implements Serializable{
+	private static final long serialVersionUID = 1L;
+			
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long num;
@@ -15,8 +25,13 @@ public class Aulas {
 	private String descripcion;
 	private int planta;
 	
+	@OneToMany
+	@JoinColumn(name = "aula_id")
+	private List<Equipos> equipos;
+	
 	public Aulas() {
 		super();
+		//nacho es bobo
 	}
 	
 	public Aulas(Long num, String codigo, String descripcion, int planta) {
