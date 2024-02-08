@@ -9,8 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 
 @Entity
 @NamedQuery(name="Equipos.findAll", query="SELECT e FROM Equipos e")
@@ -20,7 +18,7 @@ public class Equipos implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-
+    
 	
     private String tipoEquipo;
     private String fechaAdquisicion;
@@ -29,12 +27,9 @@ public class Equipos implements Serializable {
     private String modelo;
     private String descripcion;
     private int baja;
+    
     private Long aulaNum;
     private Long puesto;
-    
-    @OneToMany
-    @JoinColumn(name="equipo_id")
-    private List<Incidencias> incidencias;
 
 	public Equipos() {
 		super();

@@ -4,53 +4,52 @@ import java.io.Serializable;
 
 import org.hibernate.annotations.NamedQuery;
 
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+;
 
 @Entity
 @NamedQuery(name="Perfiles.findAll", query="SELECT p FROM Perfiles p")
 public class Perfiles implements Serializable {
     private static final long serialVersionUID = 1L;
-
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int personal_id;
+    
+    
     private String dominio;
     private String educantabria;
     private String password;
     private String perfil;
-    @OneToOne
-    @JoinColumn(name="personal_id")
-    private Personal personal;
+    
+    private Personal persona;
+
 	public Perfiles() {
 		super();
 	}
 
 	
 
-	public Perfiles(String dominio, String educantabria, String password, String perfil, Personal personal) {
+	public Perfiles(String dominio, String educantabria, String password, String perfil, Personal persona) {
 		super();
 		this.dominio = dominio;
 		this.educantabria = educantabria;
 		this.password = password;
 		this.perfil = perfil;
-		this.personal = personal;
+		this.persona = persona;
 	}
 
 
 
 	public Personal getPersonal() {
-		return personal;
+		return persona;
 	}
 
 
 
 	public void setPersonal(Personal personal) {
-		this.personal = personal;
+		this.persona = personal;
 	}
 
 

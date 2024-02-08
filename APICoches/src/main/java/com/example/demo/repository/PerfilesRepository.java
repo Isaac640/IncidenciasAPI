@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.demo.model.Perfiles;
 
-public interface PerfilesRepository extends JpaRepository<Perfiles, Long>{
-	Perfiles findByEducantabriaAndPassword( @PathVariable String educantabria,  String Password);
+public interface PerfilesRepository extends JpaRepository<Perfiles, Integer>{
+	Perfiles findByEducantabriaAndPassword( String educantabria,  String Password);
 	Perfiles findByDominio(String dominio);
 }

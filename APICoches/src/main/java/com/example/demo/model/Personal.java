@@ -3,7 +3,9 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,8 +33,8 @@ public class Personal implements Serializable {
     private String cp;
     private String tlf;
     private int activo;
-    private Long departamentoId;
-    @OneToOne(mappedBy="personal")
+    @JoinColumn(name = "perfil")
+    @OneToOne(fetch = FetchType.LAZY)
     private Perfiles perfil;
 
     @OneToMany(mappedBy="creador")
@@ -43,17 +45,14 @@ public class Personal implements Serializable {
 
     @OneToMany(mappedBy="personal")
     private List<Comentarios> comentarios;
-
-    @ManyToOne
-    @JoinColumn(name="jefedept_id")
-    private Departamentos departamento;
+   
 	public Personal() {
 		super();
 	}
 
 
 	public Personal(int id, String dni, String nombre, String apellido1, String apellido2, String direccion,
-			String localidad, String cp, String tlf, int activo, Long departamentoId, Perfiles perfil,
+			String localidad, String cp, String tlf, int activo, Perfiles perfil,
 			List<Incidencias> incidenciasCreadas, List<Incidencias> incidenciasResponsable,
 			List<Comentarios> comentarios, Departamentos departamento) {
 		super();
@@ -67,12 +66,11 @@ public class Personal implements Serializable {
 		this.cp = cp;
 		this.tlf = tlf;
 		this.activo = activo;
-		this.departamentoId = departamentoId;
 		this.perfil = perfil;
 		this.incidenciasCreadas = incidenciasCreadas;
 		this.incidenciasResponsable = incidenciasResponsable;
 		this.comentarios = comentarios;
-		this.departamento = departamento;
+	
 	}
 
 
@@ -156,13 +154,46 @@ public class Personal implements Serializable {
 		this.activo = activo;
 	}
 
-	public Long getDepartamentoId() {
-		return departamentoId;
+
+	public Perfiles getPerfil() {
+		return perfil;
 	}
 
-	public void setDepartamentoId(Long departamentoId) {
-		this.departamentoId = departamentoId;
+
+	public void setPerfil(Perfiles perfil) {
+		this.perfil = perfil;
 	}
+
+
+	public List<Incidencias> getIncidenciasCreadas() {
+		return incidenciasCreadas;
+	}
+
+
+	public void setIncidenciasCreadas(List<Incidencias> incidenciasCreadas) {
+		this.incidenciasCreadas = incidenciasCreadas;
+	}
+
+
+	public List<Incidencias> getIncidenciasResponsable() {
+		return incidenciasResponsable;
+	}
+
+
+	public void setIncidenciasResponsable(List<Incidencias> incidenciasResponsable) {
+		this.incidenciasResponsable = incidenciasResponsable;
+	}
+
+
+	public List<Comentarios> getComentarios() {
+		return comentarios;
+	}
+
+
+	public void setComentarios(List<Comentarios> comentarios) {
+		this.comentarios = comentarios;
+	}
+
     
     
 	

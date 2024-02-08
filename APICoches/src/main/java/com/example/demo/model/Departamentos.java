@@ -10,7 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+
+
 
 @Entity
 @NamedQuery(name="Departamentos.findAll", query="SELECT d FROM Departamentos d")
@@ -25,23 +26,23 @@ public class Departamentos implements Serializable {
     private String cod;
     private String nombre;
     private int activo;
-    private Long jefedepId;
+    @Column(name="jefedep_id")
+    private int jefedep_Id;
 
-
-    @OneToMany(mappedBy="departamento")
-    private List<Personal> personals;
+    
 
 	public Departamentos() {
 		super();
 	}
 
-	public Departamentos(int id, String cod, String nombre, int activo, Long jefedepId) {
+	public Departamentos(int id, String cod, String nombre, int activo, int jefedep_Id) {
 		super();
 		this.id = id;
 		this.cod = cod;
 		this.nombre = nombre;
 		this.activo = activo;
-		this.jefedepId = jefedepId;
+		this.jefedep_Id = jefedep_Id;
+		
 	}
 
 	public int getId() {
@@ -76,14 +77,14 @@ public class Departamentos implements Serializable {
 		this.activo = activo;
 	}
 
-	public Long getJefedepId() {
-		return jefedepId;
+	public int getJefedep_Id() {
+		return jefedep_Id;
 	}
 
-	public void setJefedepId(Long jefedepId) {
-		this.jefedepId = jefedepId;
+	public void setJefedep_Id(int jefedep_Id) {
+		this.jefedep_Id = jefedep_Id;
 	}
-    
+
     
 	
 }

@@ -12,8 +12,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="incidencias")
 @NamedQuery(name="Incidencias.findAll", query="SELECT i FROM Incidencias i")
 public class Incidencias implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -29,7 +31,7 @@ public class Incidencias implements Serializable {
     @Column(name="equipo_id")
     private Long equipoId;
     @OneToMany
-    @JoinColumn(name="incidencia_id")
+    @JoinColumn(name="incidencia_num")
     private List<Comentarios> comentarios;
 
     @ManyToOne

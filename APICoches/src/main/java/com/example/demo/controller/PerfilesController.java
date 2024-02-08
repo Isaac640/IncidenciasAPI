@@ -33,7 +33,7 @@ public class PerfilesController {
     }
 
     @GetMapping("/{id}")
-    public Perfiles getPerfilById(@PathVariable Long id) {
+    public Perfiles getPerfilById(@PathVariable int id) {
         return perfilesRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Perfil no encontrado con id: " + id));
     }
@@ -44,7 +44,7 @@ public class PerfilesController {
     }
 
     @PutMapping("/{id}")
-    public Perfiles updatePerfil(@PathVariable Long id, @RequestBody Perfiles perfilDetails) {
+    public Perfiles updatePerfil(@PathVariable int id, @RequestBody Perfiles perfilDetails) {
         Perfiles perfil = perfilesRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Perfil no encontrado con id: " + id));
 
@@ -53,19 +53,18 @@ public class PerfilesController {
         perfil.setEducantabria(perfilDetails.getEducantabria());
         perfil.setPassword(perfilDetails.getPassword());
         perfil.setPerfil(perfilDetails.getPerfil());
-
         return perfilesRepository.save(perfil);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePerfil(@PathVariable Long id) {
+    public void deletePerfil(@PathVariable int id) {
         Perfiles perfil = perfilesRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Perfil no encontrado con id: " + id));
 
         perfilesRepository.delete(perfil);
     }
-    @GetMapping("/educantabria={educantabria}")
-    public Perfiles findbyEducantabria(@PathVariable String educantabria, @RequestParam String password){
+    @GetMapping("/educantabria={educantabria}&&password={password}")
+    public Perfiles findbyEducantabriaAndPassword(@RequestParam String educantabria, @RequestParam String password){
 Perfiles p= 	perfilesRepository.findByEducantabriaAndPassword(educantabria, password);
 return p;
     }

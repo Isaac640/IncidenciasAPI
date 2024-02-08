@@ -71,5 +71,6 @@ public class IncidenciaController {
 	public List<Incidencias> findByCreadorId(@PathVariable Long creadorId ){
 		return incidenciaRepository.findByCreadorId(creadorId);	
 	}
+    
 	
 }
