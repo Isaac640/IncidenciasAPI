@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.hibernate.annotations.NamedQuery;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.Id;
@@ -14,7 +14,9 @@ import jakarta.persistence.Id;
 @NamedQuery(name="Perfiles.findAll", query="SELECT p FROM Perfiles p")
 public class Perfiles implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
+    @Column
     private Long personal_id;
     
     
@@ -33,6 +35,7 @@ public class Perfiles implements Serializable {
 
 	public Perfiles(String dominio, String educantabria, String password, String perfil, Long personal_id) {
 		super();
+		
 		this.dominio = dominio;
 		this.educantabria = educantabria;
 		this.password = password;
@@ -43,6 +46,18 @@ public class Perfiles implements Serializable {
 
 
 	
+
+
+	public Long getPersonal_id() {
+		return personal_id;
+	}
+
+
+
+	public void setPersonal_id(Long personal_id) {
+		this.personal_id = personal_id;
+	}
+
 
 
 	public String getDominio() {

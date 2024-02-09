@@ -23,7 +23,7 @@ public class Comentarios implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
 	
     private String texto;
@@ -33,12 +33,12 @@ public class Comentarios implements Serializable {
    
     @Column(name="incidencia_num")
     private Long incidenciaNum;
-   private int personal_id;
+   private Long personal_id;
     
     private String adjuntoUrl;
     
     
-    public Comentarios(int id, String texto, LocalDateTime fechahora, Long incidenciaNum, int personal,
+    public Comentarios(Long id, String texto, LocalDateTime fechahora, Long incidenciaNum, Long personal,
 			String adjuntoUrl) {
 		super();
 		this.id = id;
@@ -53,11 +53,11 @@ public class Comentarios implements Serializable {
 		super();
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -85,11 +85,11 @@ public class Comentarios implements Serializable {
 		this.incidenciaNum = incidenciaNum;
 	}
 
-	public int getPersonal() {
+	public Long getPersonal() {
 		return personal_id;
 	}
 
-	public void setPersonal(int personal) {
+	public void setPersonal(Long personal) {
 		this.personal_id = personal;
 	}
 

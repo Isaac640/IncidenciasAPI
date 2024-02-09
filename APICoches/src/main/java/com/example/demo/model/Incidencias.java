@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.Mapping;
@@ -48,24 +49,30 @@ public class Incidencias implements Serializable {
     @JoinColumn(name="subtipo_id")
     private IncidenciasSubtipos subtipo_id;
 
-    
+    @Column(name="tiempo")
+    private Time tiempo;
     
 	public Incidencias() {
 		super();
 	}
 
-	public Incidencias(Long num, String tipo, String descripcion, String estado, Equipos equipoId, Personal creador_id,
-			Personal responsable_id, IncidenciasSubtipos subtipo_id) {
+	
+
+	public Incidencias(Long num, String tipo, String descripcion, String estado, Equipos equipoId, Personal creadorId,
+			Personal responsable_id, IncidenciasSubtipos subtipo_id, Time tiempoDe) {
 		super();
 		this.num = num;
 		this.tipo = tipo;
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.equipoId = equipoId;
-		this.creadorId = creador_id;
+		this.creadorId = creadorId;
 		this.responsable_id = responsable_id;
 		this.subtipo_id = subtipo_id;
+		this.tiempo = tiempoDe;
 	}
+
+
 
 	public Long getNum() {
 		return num;
@@ -130,6 +137,26 @@ public class Incidencias implements Serializable {
 	public void setSubtipo_id(IncidenciasSubtipos subtipo_id) {
 		this.subtipo_id = subtipo_id;
 	}
+
+	public Personal getCreadorId() {
+		return creadorId;
+	}
+
+	public void setCreadorId(Personal creadorId) {
+		this.creadorId = creadorId;
+	}
+
+	public Time getTiempo() {
+		return tiempo;
+	}
+
+	public void setTiempo(Time tiempoDe) {
+		this.tiempo = tiempoDe;
+	}
+	
+	
+	
+	
 	}
 
 	

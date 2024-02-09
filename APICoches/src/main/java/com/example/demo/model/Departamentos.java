@@ -21,13 +21,13 @@ public class Departamentos implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Long id;
 
     private String cod;
     private String nombre;
     private int activo;
     @Column(name="jefedep_id")
-    private int jefedep_Id;
+    private Long jefedep_Id;
 
     
 
@@ -35,7 +35,7 @@ public class Departamentos implements Serializable {
 		super();
 	}
 
-	public Departamentos(int id, String cod, String nombre, int activo, int jefedep_Id) {
+	public Departamentos(Long id, String cod, String nombre, int activo, Long jefedep_Id) {
 		super();
 		this.id = id;
 		this.cod = cod;
@@ -45,11 +45,11 @@ public class Departamentos implements Serializable {
 		
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -77,11 +77,11 @@ public class Departamentos implements Serializable {
 		this.activo = activo;
 	}
 
-	public int getJefedep_Id() {
+	public Long getJefedep_Id() {
 		return jefedep_Id;
 	}
 
-	public void setJefedep_Id(int jefedep_Id) {
+	public void setJefedep_Id(Long jefedep_Id) {
 		this.jefedep_Id = jefedep_Id;
 	}
 

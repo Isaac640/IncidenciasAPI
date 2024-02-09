@@ -81,6 +81,9 @@ return p;
     {	
     	return perfilesRepository.findByDominio(dominio);
     }
-    
+    @PostMapping("/dominio")
+    public Perfiles findDominio(@RequestParam String dominio) {
+    	return perfilesRepository.findByDominio(dominio);
+    }
     
 }

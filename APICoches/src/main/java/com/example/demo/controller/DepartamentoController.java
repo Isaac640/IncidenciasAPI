@@ -28,7 +28,7 @@ public class DepartamentoController {
     }
 	
 	@GetMapping("/{id}")
-	public Departamentos getDepartamentoById(@PathVariable int id) {
+	public Departamentos getDepartamentoById(@PathVariable Long id) {
         return departamentosRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Departamento no encontrado con id: " + id));
     }
@@ -39,7 +39,7 @@ public class DepartamentoController {
     }
 	
 	@PutMapping("/{id}")
-	public Departamentos updateDepartamento(@PathVariable int id, @RequestBody Departamentos departamentoDetails) {
+	public Departamentos updateDepartamento(@PathVariable Long id, @RequestBody Departamentos departamentoDetails) {
         Departamentos departamento = departamentosRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Departamento no encontrado con id: " + id));
 
@@ -53,7 +53,7 @@ public class DepartamentoController {
     }
 	
 	@DeleteMapping("/{id}")
-	public void deleteDepartamento(@PathVariable int id) {
+	public void deleteDepartamento(@PathVariable Long id) {
         Departamentos departamento = departamentosRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Departamento no encontrado con id: " + id));
 

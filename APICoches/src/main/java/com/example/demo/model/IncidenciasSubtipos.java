@@ -14,11 +14,11 @@ import jakarta.persistence.OneToMany;
 @Entity
 @NamedQuery(name="IncidenciasSubtipos.findAll", query="SELECT i FROM IncidenciasSubtipos i")
 public class IncidenciasSubtipos implements Serializable {
-    private static final long serialVersionUID = 1L;
+   
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String tipo;
     private String subtipoNombre;
     private String subSubtipo;
@@ -30,7 +30,7 @@ public class IncidenciasSubtipos implements Serializable {
 		super();
 	}
 
-	public IncidenciasSubtipos(int id, String tipo, String subtipoNombre, String subSubtipo) {
+	public IncidenciasSubtipos(Long id, String tipo, String subtipoNombre, String subSubtipo) {
 		super();
 		this.id = id;
 		this.tipo = tipo;
@@ -38,11 +38,11 @@ public class IncidenciasSubtipos implements Serializable {
 		this.subSubtipo = subSubtipo;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
