@@ -3,8 +3,11 @@ package com.example.demo.model;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.Mapping;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,41 +26,52 @@ public class Incidencias implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int num;
+    private Long num;
 
     private String tipo;
     private String descripcion;
     private String estado;
-   
-    @Column(name="equipo_id")
-    private Long equipoId;
-    @OneToMany
-    @JoinColumn(name="incidencia_num")
-    private List<Comentarios> comentarios;
+    @OneToOne
+    @JoinColumn(name="equipo_id")
+    private Equipos equipoId;
+    
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="creador_id")
-    private Personal creador;
+    private Personal creadorId;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="responsable_id")
-    private Personal responsable;
+    private Personal responsable_id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="subtipo_id")
-    private IncidenciasSubtipos subtipo;
+    private IncidenciasSubtipos subtipo_id;
 
+    
+    
 	public Incidencias() {
 		super();
 	}
 
-	
+	public Incidencias(Long num, String tipo, String descripcion, String estado, Equipos equipoId, Personal creador_id,
+			Personal responsable_id, IncidenciasSubtipos subtipo_id) {
+		super();
+		this.num = num;
+		this.tipo = tipo;
+		this.descripcion = descripcion;
+		this.estado = estado;
+		this.equipoId = equipoId;
+		this.creadorId = creador_id;
+		this.responsable_id = responsable_id;
+		this.subtipo_id = subtipo_id;
+	}
 
-	public int getNum() {
+	public Long getNum() {
 		return num;
 	}
 
-	public void setNum(int num) {
+	public void setNum(Long num) {
 		this.num = num;
 	}
 
@@ -67,22 +82,6 @@ public class Incidencias implements Serializable {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-
-
-	public Incidencias(int num, String tipo, String descripcion, String estado, Long equipoId,
-			List<Comentarios> comentarios, Personal creador, Personal responsable, IncidenciasSubtipos subtipo) {
-		super();
-		this.num = num;
-		this.tipo = tipo;
-		this.descripcion = descripcion;
-		this.estado = estado;
-		this.equipoId = equipoId;
-		this.comentarios = comentarios;
-		this.creador = creador;
-		this.responsable = responsable;
-		this.subtipo = subtipo;
-	}
-
 
 	public String getDescripcion() {
 		return descripcion;
@@ -100,51 +99,38 @@ public class Incidencias implements Serializable {
 		this.estado = estado;
 	}
 
-	public Long getEquipoId() {
+	public Equipos getEquipoId() {
 		return equipoId;
 	}
 
-	public void setEquipoId(Long equipoId) {
+	public void setEquipoId(Equipos equipoId) {
 		this.equipoId = equipoId;
 	}
 
-	
-
-
-
-	public List<Comentarios> getComentarios() {
-		return comentarios;
+	public Personal getCreador_id() {
+		return creadorId;
 	}
 
-	public void setComentarios(List<Comentarios> comentarios) {
-		this.comentarios = comentarios;
+	public void setCreador_id(Personal creador_id) {
+		this.creadorId = creador_id;
 	}
 
-	public Personal getCreador() {
-		return creador;
+	public Personal getResponsable_id() {
+		return responsable_id;
 	}
 
-	public void setCreador(Personal creador) {
-		this.creador = creador;
+	public void setResponsable_id(Personal responsable_id) {
+		this.responsable_id = responsable_id;
 	}
 
-	public Personal getResponsable() {
-		return responsable;
+	public IncidenciasSubtipos getSubtipo_id() {
+		return subtipo_id;
 	}
 
-	public void setResponsable(Personal responsable) {
-		this.responsable = responsable;
+	public void setSubtipo_id(IncidenciasSubtipos subtipo_id) {
+		this.subtipo_id = subtipo_id;
 	}
-
-	public IncidenciasSubtipos getSubtipo() {
-		return subtipo;
-	}
-
-	public void setSubtipo(IncidenciasSubtipos subtipo) {
-		this.subtipo = subtipo;
 	}
 
 	
-    
-	
-}
+

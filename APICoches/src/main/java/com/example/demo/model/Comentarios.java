@@ -30,24 +30,22 @@ public class Comentarios implements Serializable {
     
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime fechahora;
+   
     @Column(name="incidencia_num")
-    private int incidenciaNum;
-    @ManyToOne
-    @JoinColumn(name="personal_id")
-    private Personal personal;
-
+    private Long incidenciaNum;
+   private int personal_id;
     
     private String adjuntoUrl;
     
     
-	public Comentarios(int id, String texto, LocalDateTime fechahora, int incidenciaNum, Personal personal,
+    public Comentarios(int id, String texto, LocalDateTime fechahora, Long incidenciaNum, int personal,
 			String adjuntoUrl) {
 		super();
 		this.id = id;
 		this.texto = texto;
 		this.fechahora = fechahora;
 		this.incidenciaNum = incidenciaNum;
-		this.personal = personal;
+		this.personal_id = personal;
 		this.adjuntoUrl = adjuntoUrl;
 	}
 
@@ -79,20 +77,20 @@ public class Comentarios implements Serializable {
 		this.fechahora = fechahora;
 	}
 
-	public int getIncidenciaNum() {
+	public Long getIncidenciaNum() {
 		return incidenciaNum;
 	}
 
-	public void setIncidenciaNum(int incidenciaNum) {
+	public void setIncidenciaNum(Long incidenciaNum) {
 		this.incidenciaNum = incidenciaNum;
 	}
 
-	public Personal getPersonal() {
-		return personal;
+	public int getPersonal() {
+		return personal_id;
 	}
 
-	public void setPersonal(Personal personal) {
-		this.personal = personal;
+	public void setPersonal(int personal) {
+		this.personal_id = personal;
 	}
 
 	public String getAdjuntoUrl() {

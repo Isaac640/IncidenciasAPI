@@ -47,9 +47,9 @@ public class IncidenciaController {
 
         // Actualizar los campos según los detalles proporcionados
         incidencia.setTipo(incidenciaDetails.getTipo());
-        incidencia.setSubtipo(incidenciaDetails.getSubtipo());
+        incidencia.setSubtipo_id(incidenciaDetails.getSubtipo_id());
         incidencia.setDescripcion(incidenciaDetails.getDescripcion());
-        incidencia.setCreador(incidenciaDetails.getCreador());
+        incidencia.setCreador_id(incidenciaDetails.getCreador_id());
         // Actualizar otros campos según sea necesario
 
         return incidenciaRepository.save(incidencia);
@@ -63,14 +63,11 @@ public class IncidenciaController {
         incidenciaRepository.delete(incidencia);
     }
     @GetMapping("/tipo={tipo}")
-	public List<Incidencias> findByTipo(@PathVariable String Tipo){
-		return incidenciaRepository.findByTipo(Tipo);
-	}
-    
-    @GetMapping("/creadorid={creadorid}")
-	public List<Incidencias> findByCreadorId(@PathVariable Long creadorId ){
-		return incidenciaRepository.findByCreadorId(creadorId);	
-	}
-    
+   	public List<Incidencias> findByTipo(@PathVariable String Tipo){
+   		return incidenciaRepository.findByTipo(Tipo);
+   	}
+       
+     
+       
 	
 }

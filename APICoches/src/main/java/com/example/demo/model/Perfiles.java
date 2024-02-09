@@ -15,7 +15,7 @@ import jakarta.persistence.Id;
 public class Perfiles implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    private int personal_id;
+    private Long personal_id;
     
     
     private String dominio;
@@ -23,7 +23,7 @@ public class Perfiles implements Serializable {
     private String password;
     private String perfil;
     
-    private Personal persona;
+    
 
 	public Perfiles() {
 		super();
@@ -31,27 +31,18 @@ public class Perfiles implements Serializable {
 
 	
 
-	public Perfiles(String dominio, String educantabria, String password, String perfil, Personal persona) {
+	public Perfiles(String dominio, String educantabria, String password, String perfil, Long personal_id) {
 		super();
 		this.dominio = dominio;
 		this.educantabria = educantabria;
 		this.password = password;
 		this.perfil = perfil;
-		this.persona = persona;
+		this.personal_id = personal_id;
 	}
 
 
 
-	public Personal getPersonal() {
-		return persona;
-	}
-
-
-
-	public void setPersonal(Personal personal) {
-		this.persona = personal;
-	}
-
+	
 
 
 	public String getDominio() {

@@ -29,7 +29,7 @@ public class PersonalController<E>  {
     }
 
     @GetMapping("/{id}")
-    public Personal getPersonalById(@PathVariable int id) {
+    public Personal getPersonalById(@PathVariable Long id) {
         return personalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Personal no encontrado con id: " + id));
     }
@@ -40,7 +40,7 @@ public class PersonalController<E>  {
     }
 
     @PutMapping("/{id}")
-    public Personal updatePersonal(@PathVariable int id, @RequestBody Personal personalDetails) {
+    public Personal updatePersonal(@PathVariable Long id, @RequestBody Personal personalDetails) {
         Personal personal = personalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Personal no encontrado con id: " + id));
 
@@ -62,15 +62,20 @@ public class PersonalController<E>  {
 
     
     @DeleteMapping("/{id}")
-    public void deletePersonal(@PathVariable int id) {
+    public void deletePersonal(@PathVariable Long id) {
         Personal personal = personalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Personal no encontrado con id: " + id));
 
         personalRepository.delete(personal);
     }
-    
-	
-    
+    @GetMapping("/?nombre={nombre}&apellido1={apellido1}")
+	public List<Personal> findByNombreAndApellido1(@PathVariable String nombre, @PathVariable String apellido1) {
+		return personalRepository.findByNombreAndApellido1(nombre, apellido1);
+	}
+    @GetMapping("/dni={dni}")
+	public List<Personal> findBydni(@PathVariable String dni ) {
+    	return personalRepository.findByDni(dni);
+    }
     
     
 }

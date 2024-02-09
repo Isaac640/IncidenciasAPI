@@ -14,7 +14,7 @@ import jakarta.persistence.OneToMany;
 @Entity
 @NamedQuery(name="Aulas.findAll", query="SELECT a FROM Aulas a")
 public class Aulas implements Serializable {
-    private static final long serialVersionUID = 1L;
+    
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,9 +26,7 @@ public class Aulas implements Serializable {
 
     private int planta;
 
-    @OneToMany
-    @JoinColumn(name="aula_id")
-    private List<Equipos> equipos;
+    
 
 	public Aulas() {
 		super();

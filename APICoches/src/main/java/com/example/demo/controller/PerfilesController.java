@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Perfiles;
 import com.example.demo.repository.PerfilesRepository;
 
+import io.jsonwebtoken.Header;
+import io.swagger.v3.core.util.Json;
+import netscape.javascript.JSObject;
+
 
 @RestController
 @RequestMapping("/api/perfiles")
@@ -33,7 +40,7 @@ public class PerfilesController {
     }
 
     @GetMapping("/{id}")
-    public Perfiles getPerfilById(@PathVariable int id) {
+    public Perfiles getPerfilById(@PathVariable Long id) {
         return perfilesRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Perfil no encontrado con id: " + id));
     }
@@ -44,7 +51,7 @@ public class PerfilesController {
     }
 
     @PutMapping("/{id}")
-    public Perfiles updatePerfil(@PathVariable int id, @RequestBody Perfiles perfilDetails) {
+    public Perfiles updatePerfil(@PathVariable Long id, @RequestBody Perfiles perfilDetails) {
         Perfiles perfil = perfilesRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Perfil no encontrado con id: " + id));
 
@@ -57,20 +64,23 @@ public class PerfilesController {
     }
 
     @DeleteMapping("/{id}")
-    public void deletePerfil(@PathVariable int id) {
+    public void deletePerfil(@PathVariable Long id) {
         Perfiles perfil = perfilesRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Perfil no encontrado con id: " + id));
 
         perfilesRepository.delete(perfil);
     }
-    @GetMapping("/educantabria={educantabria}&&password={password}")
+    @GetMapping("/validacion")
     public Perfiles findbyEducantabriaAndPassword(@RequestParam String educantabria, @RequestParam String password){
 Perfiles p= 	perfilesRepository.findByEducantabriaAndPassword(educantabria, password);
 return p;
     }
-    @GetMapping("perfil/dominio={dominio}")
-    public Perfiles findByDominio(@PathVariable String dominio)
-    {
+    
+    @GetMapping("/dominio")
+    public Perfiles findByDominio(@RequestParam String dominio)
+    {	
     	return perfilesRepository.findByDominio(dominio);
     }
+    
+    
 }

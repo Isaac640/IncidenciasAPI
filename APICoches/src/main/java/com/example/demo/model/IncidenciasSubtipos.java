@@ -24,9 +24,8 @@ public class IncidenciasSubtipos implements Serializable {
     private String subSubtipo;
 
 
-    @OneToMany
-    @JoinColumn(name="subtipo_id")
-    private List<Incidencias> incidencias;
+    
+   
 	public IncidenciasSubtipos() {
 		super();
 	}
