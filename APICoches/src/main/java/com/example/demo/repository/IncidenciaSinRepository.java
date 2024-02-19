@@ -10,6 +10,6 @@ import com.example.demo.model.IncidenciasSin;
 import com.example.demo.model.Personal;
 
 public interface IncidenciaSinRepository extends JpaRepository<IncidenciasSin, Long>{
-
+	List<IncidenciasSin> findByCreadorId(Long creadorID);
 
 }

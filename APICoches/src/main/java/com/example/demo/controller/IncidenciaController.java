@@ -44,12 +44,7 @@ public class IncidenciaController {
    		return incidenciaRepository.findByTipo(Tipo);
    	}
        
-    @GetMapping("/creadorId/{id}")
-   public List<Incidencias> findByCreador(@PathVariable(name="id") Long creador_id){
-   	 Personal p=new Personal();
-   	 p.setId(creador_id);
-     return incidenciaRepository.findByCreadorId(p);
-    }
+  
     
     
    

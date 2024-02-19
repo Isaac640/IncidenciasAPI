@@ -19,7 +19,7 @@ import com.example.demo.repository.IncidenciaSinRepository;
 import com.example.demo.repository.PersonalRepository;
 
 @RestController
-@RequestMapping("/api/incidencias")
+@RequestMapping("/api/")
 public class IncidenciaSinController {
 
 	@Autowired
@@ -27,13 +27,13 @@ public class IncidenciaSinController {
 
    
    
-
-    @PostMapping
+	
+    @PostMapping("incidencias")
     public IncidenciasSin createIncidencia(@RequestBody IncidenciasSin incidencia) {
         return incidenciaSinRepository.save(incidencia);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("incidencias/{id}")
     public IncidenciasSin updateIncidencia(@PathVariable Long id, @RequestBody IncidenciasSin incidenciaDetails) {
         IncidenciasSin incidencia = incidenciaSinRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Incidencia no encontrada con id: " + id));
@@ -48,11 +48,16 @@ public class IncidenciaSinController {
         return incidenciaSinRepository.save(incidencia);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("incidencias/{id}")
     public void deleteIncidencia(@PathVariable Long id) {
         IncidenciasSin incidencia = incidenciaSinRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Incidencia no encontrada con id: " + id));
 
         incidenciaSinRepository.delete(incidencia);
     }
+    @GetMapping("incidencias/creadorId/{id}")
+    public List<IncidenciasSin> findByCreador(@PathVariable(name="id") Long creador_id){
+    	
+      return incidenciaSinRepository.findByCreadorId(creador_id);
+     }
 }
