@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-
+import com.example.demo.model.*;
 import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Incidencias;
 import com.example.demo.repository.IncidenciaRepository;
+import com.example.demo.repository.PersonalRepository;
 
 @RestController
 @RequestMapping("/api/incidencias")
@@ -67,7 +68,16 @@ public class IncidenciaController {
    		return incidenciaRepository.findByTipo(Tipo);
    	}
        
+    @GetMapping("/creadorId/{id}")
+    public List<Incidencias> findByCreador(@PathVariable(name="id") Long creador_id){
+   	 Personal p=new Personal();
+   	 p.setId(creador_id);
+   	 return incidenciaRepository.findByCreadorId(p);
+    
+    
+    }
+
+    
      
-       
 	
 }
