@@ -36,48 +36,23 @@ public class IncidenciaController {
                 .orElseThrow(() -> new RuntimeException("Incidencia no encontrada con id: " + id));
     }
 
-    @PostMapping
-    public Incidencias createIncidencia(@RequestBody Incidencias incidencia) {
-        return incidenciaRepository.save(incidencia);
-    }
 
-    @PutMapping("/{id}")
-    public Incidencias updateIncidencia(@PathVariable Long id, @RequestBody Incidencias incidenciaDetails) {
-        Incidencias incidencia = incidenciaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Incidencia no encontrada con id: " + id));
-
-        // Actualizar los campos según los detalles proporcionados
-        incidencia.setTipo(incidenciaDetails.getTipo());
-        incidencia.setSubtipo_id(incidenciaDetails.getSubtipo_id());
-        incidencia.setDescripcion(incidenciaDetails.getDescripcion());
-        incidencia.setCreador_id(incidenciaDetails.getCreador_id());
-        // Actualizar otros campos según sea necesario
-
-        return incidenciaRepository.save(incidencia);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteIncidencia(@PathVariable Long id) {
-        Incidencias incidencia = incidenciaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Incidencia no encontrada con id: " + id));
-
-        incidenciaRepository.delete(incidencia);
-    }
+   
+   
     @GetMapping("/tipo={tipo}")
    	public List<Incidencias> findByTipo(@PathVariable String Tipo){
    		return incidenciaRepository.findByTipo(Tipo);
    	}
        
     @GetMapping("/creadorId/{id}")
-    public List<Incidencias> findByCreador(@PathVariable(name="id") Long creador_id){
+   public List<Incidencias> findByCreador(@PathVariable(name="id") Long creador_id){
    	 Personal p=new Personal();
    	 p.setId(creador_id);
-   	 return incidenciaRepository.findByCreadorId(p);
-    
-    
+     return incidenciaRepository.findByCreadorId(p);
     }
-
     
+    
+   
      
 	
 }
