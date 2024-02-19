@@ -45,6 +45,7 @@ public class PersonalController<E>  {
                 .orElseThrow(() -> new RuntimeException("Personal no encontrado con id: " + id));
 
         // Actualizar los campos según los detalles proporcionados
+        personal.setId(personalDetails.getId());
         personal.setDni(personalDetails.getDni());
         personal.setNombre(personalDetails.getNombre());
         personal.setApellido1(personalDetails.getApellido1());

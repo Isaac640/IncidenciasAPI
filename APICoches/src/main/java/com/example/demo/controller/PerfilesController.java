@@ -56,6 +56,7 @@ public class PerfilesController {
                 .orElseThrow(() -> new RuntimeException("Perfil no encontrado con id: " + id));
 
         // Actualizar los campos según los detalles proporcionados
+        perfil.setPersonal_id(perfilDetails.getPersonal_id());
         perfil.setDominio(perfilDetails.getDominio());
         perfil.setEducantabria(perfilDetails.getEducantabria());
         perfil.setPassword(perfilDetails.getPassword());
