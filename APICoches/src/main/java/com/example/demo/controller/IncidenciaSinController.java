@@ -43,6 +43,7 @@ public class IncidenciaSinController {
         incidencia.setSubtipo_id(incidenciaDetails.getSubtipo_id());
         incidencia.setDescripcion(incidenciaDetails.getDescripcion());
         incidencia.setCreador_id(incidenciaDetails.getCreador_id());
+        incidencia.setFecha_creacion(incidenciaDetails.getFecha_creacion());
         // Actualizar otros campos según sea necesario
 
         return incidenciaSinRepository.save(incidencia);

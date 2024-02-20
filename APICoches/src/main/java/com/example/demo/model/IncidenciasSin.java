@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Time;
 
 import jakarta.persistence.Column;
@@ -41,7 +42,8 @@ import jakarta.persistence.Table;
 
 	    @Column(name="tiempo")
 	    private Time tiempo;
-	    
+	    private Date fecha_creacion;
+	    private Date fecha_cierre;
 		public IncidenciasSin() {
 			super();
 		}
@@ -59,6 +61,7 @@ import jakarta.persistence.Table;
 			this.creadorId = creadorId;
 			this.responsable_id = responsable_id;
 			this.subtipo_id = subtipo_id;
+			
 			this.tiempo = tiempoDe;
 		}
 
@@ -142,6 +145,30 @@ import jakarta.persistence.Table;
 
 		public void setTiempo(Time tiempoDe) {
 			this.tiempo = tiempoDe;
+		}
+
+
+
+		public Date getFecha_creacion() {
+			return fecha_creacion;
+		}
+
+
+
+		public void setFecha_creacion(Date fecha_creacion) {
+			this.fecha_creacion = fecha_creacion;
+		}
+
+
+
+		public Date getFecha_cierre() {
+			return fecha_cierre;
+		}
+
+
+
+		public void setFecha_cierre(Date fecha_cierre) {
+			this.fecha_cierre = fecha_cierre;
 		}
 		
 		

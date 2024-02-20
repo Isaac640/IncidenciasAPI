@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
@@ -32,6 +33,8 @@ public class Incidencias implements Serializable {
     private String tipo;
     private String descripcion;
     private String estado;
+    private Date fecha_creacion;
+    private Date fecha_cierre;
     @OneToOne
     @JoinColumn(name="equipo_id")
     private Equipos equipoId;
@@ -56,23 +59,22 @@ public class Incidencias implements Serializable {
 		super();
 	}
 
-	
-
-	public Incidencias(Long num, String tipo, String descripcion, String estado, Equipos equipoId, Personal creadorId,
-			Personal responsable_id, IncidenciasSubtipos subtipo_id, Time tiempoDe) {
+	public Incidencias(Long num, String tipo, String descripcion, String estado, Date fecha_creacion, Date fecha_cierre,
+			Equipos equipoId, Personal creadorId, Personal responsable_id, IncidenciasSubtipos subtipo_id,
+			Time tiempo) {
 		super();
 		this.num = num;
 		this.tipo = tipo;
 		this.descripcion = descripcion;
 		this.estado = estado;
+		this.fecha_creacion = fecha_creacion;
+		this.fecha_cierre = fecha_cierre;
 		this.equipoId = equipoId;
 		this.creadorId = creadorId;
 		this.responsable_id = responsable_id;
 		this.subtipo_id = subtipo_id;
-		this.tiempo = tiempoDe;
+		this.tiempo = tiempo;
 	}
-
-
 
 	public Long getNum() {
 		return num;
@@ -106,6 +108,22 @@ public class Incidencias implements Serializable {
 		this.estado = estado;
 	}
 
+	public Date getFecha_creacion() {
+		return fecha_creacion;
+	}
+
+	public void setFecha_creacion(Date fecha_creacion) {
+		this.fecha_creacion = fecha_creacion;
+	}
+
+	public Date getFecha_cierre() {
+		return fecha_cierre;
+	}
+
+	public void setFecha_cierre(Date fecha_cierre) {
+		this.fecha_cierre = fecha_cierre;
+	}
+
 	public Equipos getEquipoId() {
 		return equipoId;
 	}
@@ -114,12 +132,12 @@ public class Incidencias implements Serializable {
 		this.equipoId = equipoId;
 	}
 
-	public Personal getCreador_id() {
+	public Personal getCreadorId() {
 		return creadorId;
 	}
 
-	public void setCreador_id(Personal creador_id) {
-		this.creadorId = creador_id;
+	public void setCreadorId(Personal creadorId) {
+		this.creadorId = creadorId;
 	}
 
 	public Personal getResponsable_id() {
@@ -138,26 +156,18 @@ public class Incidencias implements Serializable {
 		this.subtipo_id = subtipo_id;
 	}
 
-	public Personal getCreadorId() {
-		return creadorId;
-	}
-
-	public void setCreadorId(Personal creadorId) {
-		this.creadorId = creadorId;
-	}
-
 	public Time getTiempo() {
 		return tiempo;
 	}
 
-	public void setTiempo(Time tiempoDe) {
-		this.tiempo = tiempoDe;
+	public void setTiempo(Time tiempo) {
+		this.tiempo = tiempo;
 	}
-	
-	
-	
-	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	
 
+	}
