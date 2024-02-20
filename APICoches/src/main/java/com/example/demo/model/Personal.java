@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.util.List;
+
+import org.springframework.boot.autoconfigure.web.WebProperties.Resources.Chain.Strategy;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,9 +17,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Personal")
-public class Personal {
+public class Personal implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
     private String dni;
     private String nombre;
@@ -29,30 +35,15 @@ public class Personal {
     private int activo;
     private int departamento_id;
     
-    @OneToOne(mappedBy="personal")
-    private Perfiles perfil;
-
-    @OneToMany(mappedBy="creador")
-    private List<Incidencias> incidenciasCreadas;
-
-    @OneToMany(mappedBy="responsable")
-    private List<Incidencias> incidenciasResponsable;
-
-    @OneToMany(mappedBy="personal")
-    private List<Comentarios> comentarios;
-
-    @ManyToOne
-    @JoinColumn(name="jefedep_id")
-    private Departamentos departamento;
     
 	public Personal() {
 		super();
 	}
 
+	
+
 	public Personal(Long id, String dni, String nombre, String apellido1, String apellido2, String direccion,
-			String localidad, String cp, String tlf, int activo, int departamento_id, Perfiles perfil,
-			List<Incidencias> incidenciasCreadas, List<Incidencias> incidenciasResponsable,
-			List<Comentarios> comentarios, Departamentos departamento) {
+			String localidad, String cp, String tlf, int activo, int departamento_id) {
 		super();
 		this.id = id;
 		this.dni = dni;
@@ -65,12 +56,9 @@ public class Personal {
 		this.tlf = tlf;
 		this.activo = activo;
 		this.departamento_id = departamento_id;
-		this.perfil = perfil;
-		this.incidenciasCreadas = incidenciasCreadas;
-		this.incidenciasResponsable = incidenciasResponsable;
-		this.comentarios = comentarios;
-		this.departamento = departamento;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -152,80 +140,12 @@ public class Personal {
 		this.activo = activo;
 	}
 
-
-
-	public Perfiles getPerfil() {
-		return perfil;
-	}
-
-
-
-	public void setPerfil(Perfiles perfil) {
-		this.perfil = perfil;
-	}
-
-
-
-	public List<Incidencias> getIncidenciasCreadas() {
-		return incidenciasCreadas;
-	}
-
-
-
-	public void setIncidenciasCreadas(List<Incidencias> incidenciasCreadas) {
-		this.incidenciasCreadas = incidenciasCreadas;
-	}
-
-
-
-	public List<Incidencias> getIncidenciasResponsable() {
-		return incidenciasResponsable;
-	}
-
-
-
-	public void setIncidenciasResponsable(List<Incidencias> incidenciasResponsable) {
-		this.incidenciasResponsable = incidenciasResponsable;
-	}
-
-
-
-	public List<Comentarios> getComentarios() {
-		return comentarios;
-	}
-
-
-
-	public void setComentarios(List<Comentarios> comentarios) {
-		this.comentarios = comentarios;
-	}
-
-
-
-	public Departamentos getDepartamento() {
-		return departamento;
-	}
-
-
-
-	public void setDepartamento(Departamentos departamento) {
-		this.departamento = departamento;
-	}
-
-
-
 	public int getDepartamento_id() {
 		return departamento_id;
 	}
-
-
-
+	
 	public void setDepartamento_id(int departamento_id) {
 		this.departamento_id = departamento_id;
-	}
-
-	
-    
-    
+	}  
 	
 }

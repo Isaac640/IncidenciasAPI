@@ -21,10 +21,7 @@ public class Perfiles {
     private String password;
     @Enumerated(EnumType.STRING)
     private TipoPerfil perfil;
-    
-    @OneToOne
-    @JoinColumn(name = "personal_id")
-    private Personal personal;
+   
     
 	public Perfiles() {
 		super();
@@ -32,15 +29,13 @@ public class Perfiles {
 
 	
 
-	public Perfiles(Long personal_Id, String dominio, String educantabria, String password, TipoPerfil perfil,
-			Personal personal) {
+	public Perfiles(Long personal_Id, String dominio, String educantabria, String password, TipoPerfil perfil) {
 		super();
 		this.personal_Id = personal_Id;
 		this.dominio = dominio;
 		this.educantabria = educantabria;
 		this.password = password;
 		this.perfil = perfil;
-		this.personal = personal;
 	}
 
 
@@ -83,16 +78,6 @@ public class Perfiles {
 
 	public void setPerfil(TipoPerfil perfil) {
 		this.perfil = perfil;
-	}
-
-	public Personal getPersonal() {
-		return personal;
-	}
-
-	public void setPersonal(Personal personal) {
-		this.personal = personal;
-	}
-    
-    
+	}  
 	
 }

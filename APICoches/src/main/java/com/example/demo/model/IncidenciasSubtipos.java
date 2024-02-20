@@ -23,9 +23,6 @@ public class IncidenciasSubtipos {
     private String subtipoNombre;
     private String subSubtipo;
     
-    @OneToMany
-    @JoinColumn(name="subtipo_id")
-    private List<Incidencias> incidencias;
     
 	public IncidenciasSubtipos() {
 		super();

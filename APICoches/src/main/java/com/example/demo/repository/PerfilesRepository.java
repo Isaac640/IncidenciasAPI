@@ -10,6 +10,7 @@ import com.example.demo.model.Perfiles;
 @Repository
 public interface PerfilesRepository extends JpaRepository<Perfiles, Long>{
 	
-	Optional<Perfiles> findOneByEducantabria(String educantabria);
+	Perfiles findByEducantabriaAndPassword( String educantabria,  String Password);
+	Perfiles findByDominio(String dominio);
 	
 }

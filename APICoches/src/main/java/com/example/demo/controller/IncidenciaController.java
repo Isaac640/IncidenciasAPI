@@ -45,7 +45,7 @@ public class IncidenciaController {
 
         // Actualizar los campos según los detalles proporcionados
         incidencia.setTipo(incidenciaDetails.getTipo());
-        incidencia.setSubtipoId(incidenciaDetails.getSubtipoId());
+        incidencia.setSubtipo_id(incidenciaDetails.getSubtipo_id());
         incidencia.setDescripcion(incidenciaDetails.getDescripcion());
         // Actualizar otros campos según sea necesario
 

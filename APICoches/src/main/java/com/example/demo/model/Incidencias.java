@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,156 +14,162 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "incidencias")
-public class Incidencias {
+public class Incidencias implements Serializable{
 	
-	@Id
-	private Long num;
-	
-	@Enumerated(EnumType.STRING)
-    private TipoIncidencias tipo;
-	@Column(name = "subtipo_id", insertable = false, updatable = false)
-    private Long subtipoId;
-    private LocalDateTime fecha_creacion;
-    private LocalDateTime fecha_cierre;
+	private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long num;
+
+    private String tipo;
     private String descripcion;
-    private Estado estado;
-    private String adjunto_url;
-   
-    @Column(name = "creador_id", insertable = false, updatable = false)
-    private Long creadorId;
-    @Column(name = "responsable_id", insertable = false, updatable = false)
-    private Long responsableId;
-    @Column(name = "equipo_id")
-    private Long equipoId;
+    private String estado;
     
-    @OneToMany
-    @JoinColumn(name="incidencia_id")
-    private List<Comentarios> comentarios;
+    @OneToOne
+    @JoinColumn(name="equipo_id")
+    private Equipos equipoId;
+    
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="creador_id")
-    private Personal creador;
+    private Personal creadorId;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="responsable_id")
-    private Personal responsable;
+    private Personal responsable_id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="subtipo_id")
-    private IncidenciasSubtipos subtipo;
+    private IncidenciasSubtipos subtipo_id;
     
 	public Incidencias() {
 		super();
 	}
 
-	public Incidencias(Long num, TipoIncidencias tipo, Long subtipoId, LocalDateTime fecha_creacion,
-			LocalDateTime fecha_cierre, String descripcion, Estado estado, String adjuntURL, Long creadorId,
-			Long responsableId, Long equipoId) {
+	
+
+	public Incidencias(Long num, String tipo, String descripcion, String estado, Equipos equipoId, Personal creadorId,
+			Personal responsable_id, IncidenciasSubtipos subtipo_id) {
 		super();
 		this.num = num;
 		this.tipo = tipo;
-		this.subtipoId = subtipoId;
-		this.fecha_creacion = fecha_creacion;
-		this.fecha_cierre = fecha_cierre;
 		this.descripcion = descripcion;
 		this.estado = estado;
-		this.adjunto_url = adjuntURL;
-		this.creadorId = creadorId;
-		this.responsableId = responsableId;
 		this.equipoId = equipoId;
+		this.creadorId = creadorId;
+		this.responsable_id = responsable_id;
+		this.subtipo_id = subtipo_id;
 	}
+
+
 
 	public Long getNum() {
 		return num;
 	}
 
+
+
 	public void setNum(Long num) {
 		this.num = num;
 	}
 
-	public TipoIncidencias getTipo() {
+
+
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(TipoIncidencias tipo) {
+
+
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
-	public Long getSubtipoId() {
-		return subtipoId;
-	}
 
-	public void setSubtipoId(Long subtipoId) {
-		this.subtipoId = subtipoId;
-	}
 
 	public String getDescripcion() {
 		return descripcion;
 	}
 
+
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
-	public Estado getEstado() {
+
+
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Estado estado) {
+
+
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
-	public Long getCreadorId() {
-		return creadorId;
-	}
 
-	public void setCreadorId(Long creadorId) {
-		this.creadorId = creadorId;
-	}
 
-	public Long getResponsableId() {
-		return responsableId;
-	}
-
-	public void setResponsableId(Long responsableId) {
-		this.responsableId = responsableId;
-	}
-
-	public Long getEquipoId() {
+	public Equipos getEquipoId() {
 		return equipoId;
 	}
 
-	public void setEquipoId(Long equipoId) {
+
+
+	public void setEquipoId(Equipos equipoId) {
 		this.equipoId = equipoId;
 	}
 
-	public LocalDateTime getFecha_creacion() {
-		return fecha_creacion;
+
+
+	public Personal getCreadorId() {
+		return creadorId;
 	}
 
-	public void setFecha_creacion(LocalDateTime fecha_creacion) {
-		this.fecha_creacion = fecha_creacion;
+
+
+	public void setCreadorId(Personal creadorId) {
+		this.creadorId = creadorId;
 	}
 
-	public LocalDateTime getFecha_cierre() {
-		return fecha_cierre;
+
+
+	public Personal getResponsable_id() {
+		return responsable_id;
 	}
 
-	public void setFecha_cierre(LocalDateTime fecha_cierre) {
-		this.fecha_cierre = fecha_cierre;
+
+
+	public void setResponsable_id(Personal responsable_id) {
+		this.responsable_id = responsable_id;
 	}
 
-	public String getAdjuntURL() {
-		return adjunto_url;
+
+
+	public IncidenciasSubtipos getSubtipo_id() {
+		return subtipo_id;
 	}
 
-	public void setAdjuntURL(String adjuntURL) {
-		this.adjunto_url = adjuntURL;
+
+
+	public void setSubtipo_id(IncidenciasSubtipos subtipo_id) {
+		this.subtipo_id = subtipo_id;
 	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
     
     
 	

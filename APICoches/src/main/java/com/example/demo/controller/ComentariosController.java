@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Comentarios;
+import com.example.demo.model.Incidencias;
 import com.example.demo.repository.ComentariosRepository;
+import com.example.demo.repository.IncidenciaRepository;
 
 @RestController
 @RequestMapping("/api/comentarios")
@@ -47,7 +49,6 @@ public class ComentariosController {
         comentario.setTexto(comentarioDetails.getTexto());
         comentario.setFechahora(comentarioDetails.getFechahora());
         comentario.setIncidenciaNum(comentarioDetails.getIncidenciaNum());
-        comentario.setPersonal(comentarioDetails.getPersonal());
         comentario.setAdjuntoUrl(comentarioDetails.getAdjuntoUrl());
 
         return comentariosRepository.save(comentario);
@@ -60,5 +61,10 @@ public class ComentariosController {
 
         comentariosRepository.delete(comentario);
     }
+	
+	@GetMapping("/tipo={tipo}")
+   	public List<Incidencias> findByTipo(@PathVariable String Tipo){
+   		return IncidenciaRepository.findByTipo(Tipo);
+   	}
 	
 }

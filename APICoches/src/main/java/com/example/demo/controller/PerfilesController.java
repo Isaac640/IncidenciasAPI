@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Perfiles;
@@ -29,7 +30,7 @@ public class PerfilesController {
     }
 
     @GetMapping("/{id}")
-    public Perfiles getPerfilById(@PathVariable Long id) {
+    public Perfiles getPerfilById(@RequestParam("id") Long id) {
         return perfilesRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Perfil no encontrado con id: " + id));
     }
@@ -59,6 +60,22 @@ public class PerfilesController {
                 .orElseThrow(() -> new RuntimeException("Perfil no encontrado con id: " + id));
 
         perfilesRepository.delete(perfil);
+    }
+    
+    @GetMapping("/validacion")
+    public Perfiles findbyEducantabriaAndPassword(@RequestParam String educantabria, @RequestParam String password){
+    	Perfiles p=perfilesRepository.findByEducantabriaAndPassword(educantabria, password);
+    	return p;
+    }
+    
+    @GetMapping("/dominio")
+    public Perfiles findByDominio(@RequestParam String dominio)
+    {	
+    	return perfilesRepository.findByDominio(dominio);
+    }
+    @PostMapping("/dominio")
+    public Perfiles findDominio(@RequestParam String dominio) {
+    	return perfilesRepository.findByDominio(dominio);
     }
 	
 }

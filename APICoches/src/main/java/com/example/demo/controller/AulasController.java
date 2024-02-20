@@ -59,4 +59,9 @@ public class AulasController {
         aulasRepository.delete(aulas);
     }
 	
+	@GetMapping("/codigo={codigo}")
+	public List<Aulas> findByCodigo(@PathVariable String codigo) {
+		return aulasRepository.findByCodigo(codigo);
+	}
+	
 }

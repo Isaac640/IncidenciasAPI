@@ -25,13 +25,9 @@ public class Aulas implements Serializable{
 	private String descripcion;
 	private int planta;
 	
-	@OneToMany
-	@JoinColumn(name = "aula_id")
-	private List<Equipos> equipos;
 	
 	public Aulas() {
 		super();
-		//nacho es bobo
 	}
 	
 	public Aulas(Long num, String codigo, String descripcion, int planta) {

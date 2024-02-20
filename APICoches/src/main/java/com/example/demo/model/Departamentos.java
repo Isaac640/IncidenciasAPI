@@ -27,9 +27,6 @@ public class Departamentos {
     private int activo;
     private Long jefedep_id;
     
-    @OneToMany(mappedBy="departamento_id")
-    private List<Personal> personal;;
-    
 	public Departamentos() {
 		super();
 	}

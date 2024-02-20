@@ -29,30 +29,23 @@ public class Comentarios {
     
     private String adjuntoUrl;
     
-    @ManyToOne
-    @JoinColumn(name="personal_id")
-    private Personal personal;
     
     
     
-	public void setPersonal(Personal personal) {
-		this.personal = personal;
-	}
+   
 
 	public Comentarios() {
 		super();
 	}
 
 	
-	public Comentarios(Long id, String texto, LocalDateTime fechahora, Long incidenciaNum, String adjuntoUrl,
-			Personal personal) {
+	public Comentarios(Long id, String texto, LocalDateTime fechahora, Long incidenciaNum, String adjuntoUrl) {
 		super();
 		this.id = id;
 		this.texto = texto;
 		this.fechahora = fechahora;
 		this.incidenciaNum = incidenciaNum;
 		this.adjuntoUrl = adjuntoUrl;
-		this.personal = personal;
 	}
 
 	public Long getId() {
@@ -85,12 +78,6 @@ public class Comentarios {
 	
 	public void setIncidenciaNum(Long incidenciaNum) {
 		this.incidenciaNum = incidenciaNum;
-	}
-	
-	
-	
-	public Personal getPersonal() {
-		return personal;
 	}
 
 	public String getAdjuntoUrl() {

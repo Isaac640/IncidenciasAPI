@@ -32,9 +32,6 @@ public class Equipos {
     private Long aulaNum;
     private Long puesto;
     
-    @OneToMany
-    @JoinColumn(name = "equipo_id")
-    private List<Incidencias> incidencias;
     
 	public Equipos() {
 		super();

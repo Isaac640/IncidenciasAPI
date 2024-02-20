@@ -53,7 +53,7 @@ public class PersonalController {
         personal.setCp(personalDetails.getCp());
         personal.setTlf(personalDetails.getTlf());
         personal.setActivo(personalDetails.getActivo());
-        personal.setDepartamento(personalDetails.getDepartamento());
+        personal.setDepartamento_id(personalDetails.getDepartamento_id());
 
         return personalRepository.save(personal);
     }
@@ -64,6 +64,15 @@ public class PersonalController {
                 .orElseThrow(() -> new RuntimeException("Personal no encontrado con id: " + id));
 
         personalRepository.delete(personal);
+    }
+    
+    @GetMapping("/?nombre={nombre}&apellido1={apellido1}")
+	public List<Personal> findByNombreAndApellido1(@PathVariable String nombre, @PathVariable String apellido1) {
+		return personalRepository.findByNombreAndApellido1(nombre, apellido1);
+	}
+    @GetMapping("/dni={dni}")
+	public List<Personal> findBydni(@PathVariable String dni ) {
+    	return personalRepository.findByDni(dni);
     }
 	
 }
