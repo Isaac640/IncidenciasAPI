@@ -12,5 +12,7 @@ public interface PerfilesRepository extends JpaRepository<Perfiles, Long>{
 	
 	Perfiles findByEducantabriaAndPassword( String educantabria,  String Password);
 	Perfiles findByDominio(String dominio);
+
+	
 	
 }

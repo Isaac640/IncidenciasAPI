@@ -1,5 +1,13 @@
 package com.example.demo.model;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import io.jsonwebtoken.lang.Arrays;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -21,6 +29,7 @@ public class Perfiles {
     private String password;
     @Enumerated(EnumType.STRING)
     private TipoPerfil perfil;
+    //private Map<String, Object> attributes = new HashMap<>();
    
     
 	public Perfiles() {
@@ -78,6 +87,10 @@ public class Perfiles {
 
 	public void setPerfil(TipoPerfil perfil) {
 		this.perfil = perfil;
-	}  
+	}
+
+
+
+
 	
 }

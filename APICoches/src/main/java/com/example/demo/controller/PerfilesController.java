@@ -77,5 +77,6 @@ public class PerfilesController {
     public Perfiles findDominio(@RequestParam String dominio) {
     	return perfilesRepository.findByDominio(dominio);
     }
+    
 	
 }
