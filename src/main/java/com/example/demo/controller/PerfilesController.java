@@ -5,6 +5,7 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -23,13 +24,14 @@ import com.example.demo.model.Perfiles;
 import com.example.demo.repository.PerfilesRepository;
 
 
-
+@Slf4j
 @RestController
 @RequestMapping("/api/perfiles")
 public class PerfilesController {
 	
 	@Autowired
     private PerfilesRepository perfilesRepository;
+
 
     @GetMapping
     public List<Perfiles> getAllPerfiles() {
@@ -70,8 +72,8 @@ public class PerfilesController {
     }
     @GetMapping("/validacion")
     public Perfiles findbyEducantabriaAndPassword(@RequestParam String educantabria, @RequestParam String password){
-Perfiles p= 	perfilesRepository.findByEducantabriaAndPassword(educantabria, password);
-return p;
+    Perfiles p= 	perfilesRepository.findByEducantabriaAndPassword(educantabria, password);
+    return p;
     }
     
     @GetMapping("/dominio")

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Comentarios;
 import com.example.demo.repository.ComentariosRepository;
 
+
 @RestController
 @RequestMapping("/api/comentarios")
 public class ComentariosController {
@@ -48,7 +49,7 @@ public class ComentariosController {
         comentario.setFechahora(comentarioDetails.getFechahora());
         comentario.setIncidenciaNum(comentarioDetails.getIncidenciaNum());
         comentario.setPersonal(comentarioDetails.getPersonal());
-        comentario.setAdjuntoUrl(comentarioDetails.getAdjuntoUrl());
+        //comentarios.setAdjuntoUrl(comentarioDetails.getAdjuntoUrl());
 
         return comentariosRepository.save(comentario);
     }

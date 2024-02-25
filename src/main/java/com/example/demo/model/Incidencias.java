@@ -35,6 +35,8 @@ public class Incidencias implements Serializable {
     private String tipo;
     private String descripcion;
     private String estado;
+
+	private String adjuntoURL;
     private Date fecha_creacion;
     private Date fecha_cierre;
     @OneToOne
@@ -63,7 +65,7 @@ public class Incidencias implements Serializable {
 
 	public Incidencias(Long num, String tipo, String descripcion, String estado, Date fecha_creacion, Date fecha_cierre,
 			Equipos equipoId, Personal creadorId, Personal responsable_id, IncidenciasSubtipos subtipo_id,
-			Time tiempo) {
+			Time tiempo, String adjuntoURL) {
 		super();
 		this.num = num;
 		this.tipo = tipo;
@@ -75,6 +77,7 @@ public class Incidencias implements Serializable {
 		this.creadorId = creadorId;
 		this.responsable_id = responsable_id;
 		this.subtipo_id = subtipo_id;
+		this.adjuntoURL = adjuntoURL;
 		this.tiempo = tiempo;
 	}
 
@@ -170,6 +173,7 @@ public class Incidencias implements Serializable {
 		return serialVersionUID;
 	}
 
-	
-
+	public void setAdjuntoURL(String adjuntoURL) {
+		this.adjuntoURL = adjuntoURL;
 	}
+}
