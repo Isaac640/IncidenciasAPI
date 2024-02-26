@@ -100,4 +100,6 @@ public class Comentarios implements Serializable {
 	public void setAdjuntoUrl(String adjuntoUrl) {
 		this.adjuntoUrl = adjuntoUrl;
 	}
+
+
 }

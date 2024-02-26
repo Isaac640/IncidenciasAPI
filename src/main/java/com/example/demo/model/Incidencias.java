@@ -36,7 +36,7 @@ public class Incidencias implements Serializable {
     private String descripcion;
     private String estado;
 
-	private String adjuntoURL;
+	private String adjunto_url;
     private Date fecha_creacion;
     private Date fecha_cierre;
     @OneToOne
@@ -77,7 +77,7 @@ public class Incidencias implements Serializable {
 		this.creadorId = creadorId;
 		this.responsable_id = responsable_id;
 		this.subtipo_id = subtipo_id;
-		this.adjuntoURL = adjuntoURL;
+		this.adjunto_url = adjuntoURL;
 		this.tiempo = tiempo;
 	}
 
@@ -174,6 +174,6 @@ public class Incidencias implements Serializable {
 	}
 
 	public void setAdjuntoURL(String adjuntoURL) {
-		this.adjuntoURL = adjuntoURL;
+		this.adjunto_url = adjuntoURL;
 	}
 }
