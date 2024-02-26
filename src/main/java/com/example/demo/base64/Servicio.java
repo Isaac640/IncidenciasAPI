@@ -15,7 +15,9 @@ import java.util.UUID;
 @Service
 public class Servicio {
 
+    @Autowired
     private final IncidenciaRepository incidenciaRepository;
+    @Autowired
     private final ComentariosRepository comentariosRepository;
 
     @Autowired
@@ -68,9 +70,9 @@ public class Servicio {
             // Atributos
             comentarios.setTexto(comentariosDTO.getTexto());
             comentarios.setFechahora(comentariosDTO.getFechahora());
-            comentarios.setIncidenciaNum(comentariosDTO.getIncidencia_Num());
+            comentarios.setIncidencia_num(comentariosDTO.getIncidencia_num());
             comentarios.setPersonal(comentariosDTO.getPersonalId());
-            comentarios.setAdjuntoUrl(comentarios.getAdjuntoUrl());
+            comentarios.setAdjunto_url(comentariosDTO.getAdjuntoURL());
 
             comentariosRepository.save(comentarios);
         } catch (IOException e) {

@@ -16,14 +16,6 @@ public class ComentariosDTO {
     private String cuerpoBase64;
     private String extension;
 
-    public ComentariosDTO(String texto, LocalDateTime fechahora, Long incidenciaNum, Long personalId, String cuerpoBase64, String extension) {
-        this.texto = texto;
-        this.fechahora = fechahora;
-        this.incidencia_num = incidenciaNum;
-        this.personalId = personalId;
-        this.cuerpoBase64 = cuerpoBase64;
-        this.extension = extension;
-    }
 
     public String getTexto() {
         return texto;
@@ -41,11 +33,11 @@ public class ComentariosDTO {
         this.fechahora = fechahora;
     }
 
-    public long getIncidencia_Num() {
+    public Long getIncidencia_num() {
         return incidencia_num;
     }
 
-    public void setIncidenciaNum(Long incidenciaNum) {
+    public void setIncidencia_Num(Long incidenciaNum) {
         this.incidencia_num = incidenciaNum;
     }
 

@@ -27,7 +27,15 @@ public class ComentariosController {
 	public List<Comentarios> getAllComentarios() {
         return comentariosRepository.findAll();
     }
-	
+
+    // Hacer un metodo para mostrar por incidencia no por id
+    @GetMapping("/incidencia/{incidenciaNum}")
+    public Comentarios getComentarioByIncidenciaNum(@PathVariable Long incidenciaNum) {
+        return comentariosRepository.findByIncidenciaNum(incidenciaNum)
+                .orElseThrow(() -> new RuntimeException("Comentario no encontrado con incidencia_num: " + incidenciaNum));
+    }
+
+
 	@GetMapping("/{id}")
 	public Comentarios getComentarioById(@PathVariable Long id) {
         return comentariosRepository.findById(id)
@@ -47,7 +55,7 @@ public class ComentariosController {
         // Actualizar los campos según los detalles proporcionados
         comentario.setTexto(comentarioDetails.getTexto());
         comentario.setFechahora(comentarioDetails.getFechahora());
-        comentario.setIncidenciaNum(comentarioDetails.getIncidenciaNum());
+        comentario.setIncidencia_num(comentarioDetails.getIncidencia_num());
         comentario.setPersonal(comentarioDetails.getPersonal());
         //comentarios.setAdjuntoUrl(comentarioDetails.getAdjuntoUrl());
 
