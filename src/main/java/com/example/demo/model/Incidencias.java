@@ -35,14 +35,12 @@ public class Incidencias implements Serializable {
     private String tipo;
     private String descripcion;
     private String estado;
-
 	private String adjunto_url;
     private Date fecha_creacion;
     private Date fecha_cierre;
     @OneToOne
     @JoinColumn(name="equipo_id")
     private Equipos equipoId;
-    
 
     @OneToOne
     @JoinColumn(name="creador_id")
@@ -65,7 +63,7 @@ public class Incidencias implements Serializable {
 
 	public Incidencias(Long num, String tipo, String descripcion, String estado, Date fecha_creacion, Date fecha_cierre,
 			Equipos equipoId, Personal creadorId, Personal responsable_id, IncidenciasSubtipos subtipo_id,
-			Time tiempo, String adjuntoURL) {
+			Time tiempo, String adjuntoURL, ) {
 		super();
 		this.num = num;
 		this.tipo = tipo;
