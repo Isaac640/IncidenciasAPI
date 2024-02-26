@@ -63,7 +63,7 @@ public class Incidencias implements Serializable {
 
 	public Incidencias(Long num, String tipo, String descripcion, String estado, Date fecha_creacion, Date fecha_cierre,
 			Equipos equipoId, Personal creadorId, Personal responsable_id, IncidenciasSubtipos subtipo_id,
-			Time tiempo, String adjuntoURL, ) {
+			Time tiempo, String adjuntoURL) {
 		super();
 		this.num = num;
 		this.tipo = tipo;
