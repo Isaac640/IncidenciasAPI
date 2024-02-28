@@ -14,14 +14,7 @@ Si quiere saber más sobre el proyecto IRIS visite nuestro [repositorio principa
 * [Uso](#uso)
     * [Endpoint base](#endpoint-base)
     * [Endpoints](#endpoints)
-    * [Parámetros](#parámetros)
-    * [Ejemplos](#ejemplos)
-        * [Solicitud](#solicitud)
-        * [Respuesta](#respuesta)
-* [Seguridad](#seguridad)
-* [Documentación](#documentación)
-    * [Swagger](#swagger)
-    * [Errores comunes](#errores-comunes)
+* [Swagger](#swagger)
 * [Miembros](#miembros)
 * [Contribución](#contribución)
 * [Contacto](#contacto)
@@ -49,21 +42,17 @@ A partir de esta URL base, puedes acceder a los diferentes endpoints que ofrecem
 
 ### Endpoints
 
-### Parámetros
+La API cuenta con una amplia variedad de endpoints que utilizar para obtener distintos tipos de datos o documentos. Para más información, consultar la [lista de endpoints](ENDPOINTS)
 
-### Ejemplos
-
-#### Solicitud
-
-#### Respuesta
-
-## Seguridad
-
-## Documentación
 
 ### Swagger
 
-### Errores comunes
+Además de l a documentación proporcionada en el apartado anterior, contamos con la documentación de Swagger, a la cual se puede acceder mediante este [enlace](http://localhost:8089/swagger-ui/index.html)
+
+**Notas adicionales**:
+- Asegúrate de que la API esté en funcionamiento para acceder a la documentación.
+- Si cambias el puerto por el que la API escucha (8089), recuerda actualizar también el puerto en la dirección del enlace.
+
 
 ## Miembros
 
