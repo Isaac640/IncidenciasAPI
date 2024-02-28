@@ -115,7 +115,7 @@
  - `id`: ID del comentario (requerido)
 - **Respuesta**:
  - `200 OK`: Devuelve los detalles del comentario.
-     - `404 Not Found`: Si no se encuentra el comentario con el ID proporcionado.
+ - `404 Not Found`: Si no se encuentra el comentario con el ID proporcionado.
 
 ### Obtener comentario por número de incidencia
 
@@ -125,7 +125,7 @@
  - `incidenciaNum`: Número de la incidencia (requerido)
 - **Respuesta**:
  - `200 OK`: Devuelve los detalles del comentario asociado a la incidencia.
-     - `404 Not Found`: Si no se encuentra el comentario con el número de incidencia proporcionado.
+ - `404 Not Found`: Si no se encuentra el comentario con el número de incidencia proporcionado.
 
 ### Crear comentario
 
@@ -151,7 +151,7 @@
  - `personal`: Personal asociado al comentario (opcional)
 - **Respuesta**:
  - `200 OK`: Devuelve los detalles del comentario actualizado.
-     - `404 Not Found`: Si no se encuentra el comentario con el ID proporcionado.
+ - `404 Not Found`: Si no se encuentra el comentario con el ID proporcionado.
 
 ### Eliminar comentario
 
@@ -186,7 +186,7 @@
  - `id`: ID del departamento (requerido)
 - **Respuesta**:
  - `200 OK`: Devuelve los detalles del departamento.
-    - `404 Not Found`: Si no se encuentra el departamento con el ID proporcionado.
+ - `404 Not Found`: Si no se encuentra el departamento con el ID proporcionado.
 
 ### Crear departamento
 
@@ -212,7 +212,7 @@
  - `jefedep_Id`: ID del jefe de departamento (opcional)
 - **Respuesta**:
  - `200 OK`: Devuelve los detalles del departamento actualizado.
-     - `404 Not Found`: Si no se encuentra el departamento con el ID proporcionado.
+ - `404 Not Found`: Si no se encuentra el departamento con el ID proporcionado.
 
 ### Eliminar departamento
 
@@ -626,11 +626,11 @@
 - **Descripción**: Este endpoint permite exportar las estadísticas de los tipos de incidencias registradas en la base de datos a un archivo Excel. Las estadísticas incluyen el tipo de incidencia y el número de incidencias para cada tipo.
 - **Respuesta**:
  - `200 OK`: Devuelve un archivo Excel (.xlsx) con las estadísticas de los tipos de incidencias.
-    - **Encabezados**:
-      - `Tipo incidencias`
-      - `Numero de incidencias`
-    - **Ejemplo**:
-      - El archivo Excel generado contendrá una hoja llamada "Estadisticas Tipo de incidencias" con dos columnas. La primera columna mostrará el tipo de incidencia y la segunda columna mostrará el número de incidencias para cada tipo.
+- **Encabezados**:
+ - `Tipo incidencias`
+ - `Numero de incidencias`
+- **Ejemplo**:
+ - El archivo Excel generado contendrá una hoja llamada "Estadisticas Tipo de incidencias" con dos columnas. La primera columna mostrará el tipo de incidencia y la segunda columna mostrará el número de incidencias para cada tipo.
 - **Notas**:
  - Este endpoint no requiere parámetros.
  - El archivo Excel se descargará automáticamente con el nombre "incident_statistics.xlsx".
@@ -724,13 +724,13 @@ Para utilizar este endpoint, simplemente accede a la URL `/export/IncidenciasUse
 - **Método**: `GET`
 - **Respuesta**:
  - `200 OK`: Devuelve un archivo Excel descargable con la información del tiempo de incidencia.
-    - El archivo Excel incluye las columnas:
-      - ID incidencia
-      - Tipo incidencia
-      - Descripción incidencia
-      - Fecha creación
-      - Fecha cierre
-      - Duración en minutos
+- El archivo Excel incluye las columnas:
+  - ID incidencia
+   - Tipo incidencia
+   - Descripción incidencia
+   - Fecha creación
+   - Fecha cierre
+   - Duración en minutos
  - **Notas**:
  - El archivo Excel se genera dinámicamente basándose en los datos actuales de las incidencias en la base de datos.
  - La duración se calcula en minutos entre la fecha de creación y la fecha de cierre de cada incidencia.
@@ -749,9 +749,9 @@ Para descargar el archivo Excel con el tiempo de incidencia, simplemente accede 
 - **Método**: `GET`
 - **Respuesta**:
  - `200 OK`: Genera un archivo Excel descargable con el tiempo promedio de resolución por tipo de incidencia.
-    - **Contenido**: El archivo Excel contiene dos columnas: "Incident Type" y "Average Resolution Time (minutes)".
-    - **Ejemplo de Respuesta**:
-      El usuario recibirá una descarga de un archivo Excel con los datos solicitados.
+- **Contenido**: El archivo Excel contiene dos columnas: "Incident Type" y "Average Resolution Time (minutes)".
+- **Ejemplo de Respuesta**:
+  El usuario recibirá una descarga de un archivo Excel con los datos solicitados.
 
 ---
 
