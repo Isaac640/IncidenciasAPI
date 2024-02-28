@@ -42,7 +42,7 @@ A partir de esta URL base, puedes acceder a los diferentes endpoints que ofrecem
 
 ### Endpoints
 
-La API cuenta con una amplia variedad de endpoints que utilizar para obtener distintos tipos de datos o documentos. Para más información, consultar la [lista de endpoints](ENDPOINTS)
+La API cuenta con una amplia variedad de endpoints que utilizar para obtener distintos tipos de datos o documentos. Para más información, consultar la [lista de endpoints](ENDPOINTS.md)
 
 
 ### Swagger
@@ -107,7 +107,7 @@ Si tienes alguna pregunta, sugerencia o problema, no dudes en contactarnos a tra
 
 ## Licencia
 
-Este proyecto está licenciado bajo la [Licencia MIT](LICENSE).
+Este proyecto está licenciado bajo la [Licencia MIT](LICENSE.md).
 
 La Licencia MIT es una licencia de software libre que permite a los usuarios utilizar, modificar y distribuir el software con pocos o ningún requisito. Bajo esta licencia, los usuarios pueden hacer lo que deseen con el software, siempre y cuando se incluya el aviso de copyright y la renuncia de garantía.
 
