@@ -19,6 +19,7 @@ Si quiere saber más sobre el proyecto IRIS visite nuestro [repositorio principa
 * [Contribución](#contribución)
 * [Contacto](#contacto)
 * [Licencia](#licencia)
+* [Seguridad](#seguridad)
 
 ## Descripción
 
@@ -53,6 +54,22 @@ Además de l a documentación proporcionada en el apartado anterior, contamos co
 - Asegúrate de que la API esté en funcionamiento para acceder a la documentación.
 - Si cambias el puerto por el que la API escucha (8089), recuerda actualizar también el puerto en la dirección del enlace.
 
+
+## Seguridad
+
+En cuanto a la seguridad implementando roles se ha hecho que dependiendo de si eres administrador o profesor puedas entrar a unos recursos o a otros, esto se ha controlado desde las aplicaciones ya que cuando se fue a implementar en la API estábamos usando una clase que está deprecada y salía error.
+
+También busqué otra forma de implementar la seguridad, pero tampoco sirvió debido a que te proporcionaba una clave y las guardaba en una keyStore en su ordenador, pero te proporcionaba un certificado por IP y al final se lo comenté a Luis y no le pareció práctico. Y luego puse una seguridad básica la cual me generaba un token aleatorio cada vez que se ejecutaba la API pero que tampoco se usó en la API final.
+
+Para poder acceder a adjuntos que pueden ser imágenes, PDF... lo que hicimos fue desde las aplicaciones clientes se encripta en base64 y desde la API tenemos que crear otra clase Incidencias DTO la cual tenga 2 campos más de tipo String llamados cuerpo64 y extensión. Entonces creamos un método para desencriptar el cuerpo64 y luego lo guardamos en un directorio predeterminado y con un nombre aleatorio y extensión y esto sería lo que aparecería en la base de datos, y si queremos mostrar el archivo que nos han subido tendríamos que hacer estos pasos a la inversa.
+
+Para asegurar la información de la API habría que haber metido seguridad por token y así para poder acceder a los distintos endpoints de la API en los cuales puedes ver la información de la base de datos necesitarías un token que genera y depende de si eres profesor o administrador puedes acceder a unos o a otros, pero no se implementó en el proyecto debido a que todo lo que buscábamos o casi todo estaba deprecado.
+
+En la aplicación móvil tenemos un inicio de sesión el cual se conecta a un endpoint de la API y si el correo y la contraseña coinciden te deja acceder a ella y si no te dice que no puedes acceder ya que las credenciales no coinciden. Así podemos controlar quién puede usar la aplicación.
+
+Y después en la aplicación de escritorio tenemos la validación, pero en este caso coge directamente qué perfil tienes atribuido si profesor o administrador para que tú no tengas que registrarte cuando usas la aplicación y no tengas que meter dos veces la clave en el ordenador. Y así validaría si eres profesor o administrador sin meter ninguna contraseña.
+
+En cuanto a la seguridad, el proyecto ha implementado un sistema de encriptación robusto para la protección de contraseñas, una medida indispensable para salvaguardar los datos de acceso de los usuarios. Se enfrentó a desafíos significativos con herramientas obsoletas que limitan la implementación de métodos avanzados de seguridad en la API, como la autenticación basada en tokens y el uso de certificados SSL por IP. Pese a estos obstáculos, se tomaron medidas compensatorias, como la encriptación de archivos adjuntos en base64 que, aunque proporciona una capa de seguridad adicional, pone de manifiesto la necesidad de una solución más integral y moderna para proteger la información en tránsito.
 
 ## Miembros
 
